@@ -25,7 +25,7 @@ export default function ImageFinder() {
     }
     setIsLoading(true);
 
-    fetchPictures = (pictureName, currentPage)
+    fetchPictures(pictureName, currentPage)
       .then((images) => {
         setGallery((gallery) => [...gallery, ...images]);
       })
@@ -35,10 +35,16 @@ export default function ImageFinder() {
       });
   }, [pictureName, currentPage]);
 
-  const OnLoadMoreBtnClick = () => {
+  const onLoadMoreBtnClick = () => {
     setCurrentPage((currentPage) => currentPage + 1);
-    window.scrollBy({
-      top: document.documentElement.clientHeight - 130,
+    setTimeout(() => {
+      scroll();
+    }, 600);
+  };
+
+  const scroll = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
       behavior: "smooth",
     });
   };
@@ -87,7 +93,7 @@ export default function ImageFinder() {
       )}
       <div className="BtnWrapper">
         {pictureName && gallery.length > 11 && (
-          <OnLoadMoreBtnClick onClick={fetchPictures} />
+          <OnLoadMoreBtnClick onClick={onLoadMoreBtnClick} />
         )}
       </div>
     </div>
