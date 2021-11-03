@@ -37,9 +37,7 @@ export default function ImageFinder() {
 
   const onLoadMoreBtnClick = () => {
     setCurrentPage((currentPage) => currentPage + 1);
-    setTimeout(() => {
-      scroll();
-    }, 600);
+    scroll();
   };
 
   const scroll = () => {
