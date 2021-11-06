@@ -10,6 +10,7 @@ import LoaderSpinner from "../Loader";
 import authContext from "../Context";
 import Modal from "../Modal";
 import StartPage from "../StartPage";
+import { animateScroll as scroll } from "react-scroll";
 
 export default function ImageFinder() {
   const [pictureName, setPictureName] = useState("");
@@ -37,14 +38,7 @@ export default function ImageFinder() {
 
   const onLoadMoreBtnClick = () => {
     setCurrentPage((currentPage) => currentPage + 1);
-    scroll();
-  };
-
-  const scroll = () => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth",
-    });
+    scroll.scrollToBottom();
   };
 
   const handleFormSubmit = (query) => {
